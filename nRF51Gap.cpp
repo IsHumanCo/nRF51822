@@ -232,6 +232,11 @@ ble_error_t nRF51Gap::disconnect(DisconnectionReason_t reason)
         case REMOTE_USER_TERMINATED_CONNECTION:
             code = BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION;
             break;
+        case LOCAL_HOST_TERMINATED_CONNECTION:
+        	// NOTE: sd_ble_gap_disconnect apparently doesn't support BLE_HCI_LOCAL_HOST_TERMINATED_CONNECTION
+        	code = BLE_HCI_REMOTE_USER_TERMINATED_CONNECTION;
+        	//code = BLE_HCI_LOCAL_HOST_TERMINATED_CONNECTION;
+        	break;
         case CONN_INTERVAL_UNACCEPTABLE:
             code = BLE_HCI_CONN_INTERVAL_UNACCEPTABLE;
             break;
